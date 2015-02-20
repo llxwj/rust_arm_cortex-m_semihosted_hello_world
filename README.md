@@ -1,5 +1,5 @@
 # ARM Cortex-M Semihosted Hello World" in Rust
-A simple experiment to generate a tiny semihosted "Hello World" program for the ARM Cortex-M (specifically the [STM32F429I-Disco](http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF259090) board)
+A simple experiment to generate a tiny semihosted "Hello World" program for the ARM Cortex-M (specifically the [STM32F429I-Disco](http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF259090) board) using the Rust programming language.
 
 Introduction
 ------------
