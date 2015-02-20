@@ -7,7 +7,7 @@ Dependencies
 ------------
 This project needs a GNU toolchain for cross-compiling to an ARM Cortex-M platform.  The one I used can be donwloaded from [GNU Tools for ARM Embedded Processors](https://launchpad.net/gcc-arm-embedded).
 
-Deploying the binary to board requires [OpenOCD](http://openocd.sourceforge.net/) with the [ST-Link driver](https://github.com/texane/stlink).  I'm using Arch Linux so I was able to obtain the OpenOCD package from the Arch Linux's official repository and the ST-Link driver was available in the Arch Linux User Repository (AUR).
+Deploying the binary to the board requires [OpenOCD](http://openocd.sourceforge.net/) with the [ST-Link driver](https://github.com/texane/stlink).  I'm using Arch Linux so I was able to obtain the OpenOCD package from the Arch Linux's official repository and the ST-Link driver was available in the Arch Linux User Repository (AUR).
 
 Build
 -----
