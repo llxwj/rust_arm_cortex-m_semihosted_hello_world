@@ -15,7 +15,7 @@ On a Linux host, simply run the `build.sh` shell script.
 
 Execution
 ---------
-With the STM32F Discovery Board connected to the host PC via USB, run `openocd.sh` in one terminal session and `gdb.sh` in another terminal session.  In the GDB session, type type the following to deploy the binary to the board and begin execution:
+With the STM32F Discovery Board connected to the host PC via USB, run `openocd.sh` in one terminal session and `gdb.sh` in another terminal session.  In the GDB terminal session, type the following to deploy the binary to the board and begin execution:
 ```
 monitor reset halt
 load
