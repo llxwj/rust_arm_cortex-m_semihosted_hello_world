@@ -1,5 +1,5 @@
 /*
-Copyright © 2015 Michael V. Franklin
+Copyright (c) 2015 Michael V. Franklin
      
 This file is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,16 +17,18 @@ along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
 MEMORY
 {
-  CCRAM (rxw) : ORIGIN = 0x10000000, LENGTH = 64k
-  SRAM (rxw) : ORIGIN = 0x20000000, LENGTH = 192k
-  FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 2048k
+  CCRAM (rxw) : ORIGIN = 0x10000000, LENGTH =   64k
+  SRAM  (rxw) : ORIGIN = 0x20000000, LENGTH =  192k
+  FLASH (rx)  : ORIGIN = 0x08000000, LENGTH = 2048k
 }
 
-_stackStart = ORIGIN(CCRAM) + LENGTH(CCRAM); /* Falling stack starts at the end of the CCM */
+/* Falling stack starts at the end of the CCM */
+_stackStart = ORIGIN(CCRAM) + LENGTH(CCRAM);
 
 SECTIONS
 {
-    /* Not ready to implement exceptions yet, so discard this to prevent linker errors */
+    /* Not ready to implement exceptions yet, so discard this to prevent 
+    linker errors */
     /DISCARD/ :
     {
         *(.ARM.extab*)
@@ -44,7 +46,7 @@ SECTIONS
     .text :
     {
         LONG(_stackStart);                 /* Initial stack pointer */
-        KEEP(*(.isr_vector))
+        KEEP(*(.isr_vector))               /* ISR vector entry point to main */
         *(.text)                           /* Our executable code */
         *(.text*) 
     } > FLASH

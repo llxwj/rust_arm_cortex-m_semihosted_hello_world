@@ -5,6 +5,8 @@
 #![feature(asm)]
 #![feature(lang_items)]
 
+// Just to make things build
+//------------------------------------------------------------------------------
 #[lang="sized"]
 trait Sized { }
 
@@ -14,11 +16,16 @@ trait Copy { }
 #[lang="sync"]
 trait Sync { }
 
+// Incomplete ISR vector table.  Just the reset handler to start execution at
+// main
+//------------------------------------------------------------------------------
 #[link_section=".isr_vector"]
 pub static ISRVECTORS: [unsafe extern "C" fn(); 1] = [
     main, 
 ];
 
+// Inline assembly to invoke semihosting commands
+//------------------------------------------------------------------------------
 fn semihosting(command: u32, message: &[u32; 3]) {
     unsafe {
         asm!(
@@ -32,6 +39,8 @@ fn semihosting(command: u32, message: &[u32; 3]) {
     }
 }
 
+// Minimal Rust runtime implementation
+//------------------------------------------------------------------------------
 extern "rust-intrinsic" {
     fn uninit<T>() -> T;
     fn copy_nonoverlapping_memory<T>(dst: *mut T, src: *const T, count: usize);
@@ -72,17 +81,22 @@ unsafe trait Repr<T> {
 
 unsafe impl Repr<Slice<u8>> for str {}
 
+// Program entry point
+//------------------------------------------------------------------------------
 #[no_mangle]
 pub extern "C" fn main() {
     let text = "Hello World!\n";
     
     let message : [u32; 3] = [
-        2, //stderr
+        2,               // write to stderr
         text.repr().data as u32,
         text.repr().len as u32
     ];
 
     loop { 
-        semihosting(5, &message);
+        semihosting(
+            5,           // 5 is semihosting "write" command
+            &message
+        );
     }
 }
