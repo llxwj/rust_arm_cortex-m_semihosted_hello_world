@@ -3,12 +3,12 @@
 set -e
 
 # Compile to .rlib library
-rustc --target=thumbv7em-none-eabi -O source/hello_world.rs
+rustc --target=thumbv7em-none-eabi -O -Z no-landing-pads source/hello_world.rs --emit obj -o hello_world.o
 
 # Extract the object file out of the .rlib file and delete the .rlib file
 # as it is no longer needed
-ar x libhello_world.rlib hello_world.o
-rm libhello_world.rlib
+#ar x libhello_world.rlib hello_world.o
+#rm libhello_world.rlib
 
 # Link .o file using the provided linker script to generate an executable
 # binary that can be deployed to the board's flash memory.  Remove the

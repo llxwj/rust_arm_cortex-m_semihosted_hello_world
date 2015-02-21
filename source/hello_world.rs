@@ -14,7 +14,7 @@
 // along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
 
-#![crate_type="rlib"]
+#![crate_type="staticlib"]
 #![feature(intrinsics)]
 #![feature(no_std)]
 #![no_std]
