@@ -1,4 +1,4 @@
-// Copyright © 2015 Michael V. Franklin
+// Copyright (c) 2015 Michael V. Franklin
 //      
 // This file is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,22 +15,25 @@
 
 
 #![crate_type="rlib"]
-#![no_std]
 #![feature(intrinsics)]
-#![allow(unstable)]
+#![feature(no_std)]
+#![no_std]
 #![feature(asm)]
 #![feature(lang_items)]
 
 // Just to make things build
 //------------------------------------------------------------------------------
+#[lang="phantom_fn"]
+trait PhantomFn<A:?Sized,R:?Sized=()> { }
+
 #[lang="sized"]
-trait Sized { }
+trait Sized : PhantomFn<Self> {}
 
 #[lang="copy"]
-trait Copy { }
+trait Copy : PhantomFn<Self>  { }
 
 #[lang="sync"]
-trait Sync { }
+trait Sync : PhantomFn<Self>  { }
 
 // Incomplete ISR vector table.  Just the reset handler to start execution at
 // main
