@@ -1,4 +1,4 @@
-# ARM Cortex-M Semihosted Hello World" in Rust
+# ARM Cortex-M Semihosted "Hello World" in Rust
 This is a simple experiment to generate a minimal semihosted "Hello World" program for the ARM Cortex-M platform (specifically the [STM32F429I-Disco](http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF259090) board) using the Rust programming language.  It is my first Rust program.
 
 All that is required to generate a working executable is the Rust compiler and the GNU linker.  It does not require the Rust runtime, the Rust core library (libcore), the Rust standard library, or the C standard library.  There are also no assembly files needed start execution.  All code can be found in a single Rust source file, `source/hello_world.rs`.  It must be linked with the `link/link.ld` linker script to make an executable binary that can run on a STM32F429I-DISCO board.
